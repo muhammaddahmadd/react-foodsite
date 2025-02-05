@@ -82,7 +82,7 @@ function MenuText() {
 }
 
 function Menu({data}) {
-  console.log(data)
+// alert(data.length)
   return <div className="pizzas">
     {data.map(pizza => 
       <Pizza name={pizza.name} ing={pizza.ingredients} pic={pizza.photoName} price={pizza.price} avalibility={pizza.soldOut} />
@@ -91,16 +91,29 @@ function Menu({data}) {
 }
 
 
-function Pizza({name, pic, ing, price }){
-  return <div className='pizza'>
-    <img src={`/${pic}`} alt={name} />
+function Pizza({ name, pic, ing, price, avalibility }){
+  console.log(typeof price)
+  return <div className=''>
+    {!avalibility && (
+      <div className='pizza'>
+        <img src={`/${pic}`} alt={name} />
 
-    
    <div>
       <h3>{name}</h3>
       <p>{ing}</p>
-      <h3>{price}</h3>
+      <h3>{price + "$"}</h3>
    </div>
+   </div> )}
+
+
+    {/* {!avalibility && (
+
+      <div>
+        <h3>{name}</h3>
+        <p>{ing}</p>
+        <h3>{price}</h3>
+      </div>
+  )} */}
   </div>
 }
 
@@ -111,13 +124,17 @@ function Stats(){
   const h = date.getHours()
   const open = h >= 12 && h <= 22;
   console.log(open)
- return <div className='footer'>
-   <p>
+ return <footer className='footer'>
+   {/* <p>
      {`We are ${open ? "opened, come visit us or order online" : "closed"} `}
-  
-   </p>
-   <button className='btn'>Order Now</button>
- </div>
+   </p> */}
+   {!open&& (
+    <div className='order'>
+       <p>We are closed</p>
+       <button className='btn'>Order Now</button>
+    </div>
+   )}
+ </footer>
 }
 
 export default App;
