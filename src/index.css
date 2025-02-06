@@ -219,3 +219,16 @@ FONT SIZE SYSTEM (px)
     text-align:center;
   }
 }
+
+.steps {
+  max-width: 400px;
+}
+
+.step-nums {
+  display: flex;
+  justify-content: space-between;
+}
+
+.active {
+  background-color: aquamarine;
+}
