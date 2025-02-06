@@ -91,29 +91,21 @@ function Menu({data}) {
 }
 
 
-function Pizza({ name, pic, ing, price, avalibility }){
-  console.log(typeof price)
-  return <div className=''>
-    {!avalibility && (
-      <div className='pizza'>
-        <img src={`/${pic}`} alt={name} />
+function Pizza(props){
+  const { name, pic, ing, price, avalibility } = props;
 
-   <div>
+
+
+  if(avalibility) return null;
+  return <div className=''>
+    <div className='pizza'>
+      <img src={`/${pic}`} alt={name} />
+      <div>
       <h3>{name}</h3>
       <p>{ing}</p>
       <h3>{price + "$"}</h3>
-   </div>
-   </div> )}
-
-
-    {/* {!avalibility && (
-
-      <div>
-        <h3>{name}</h3>
-        <p>{ing}</p>
-        <h3>{price}</h3>
-      </div>
-  )} */}
+    </div>
+   </div> 
   </div>
 }
 
