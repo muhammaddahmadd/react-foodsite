@@ -94,19 +94,16 @@ function Menu({data}) {
 function Pizza(props){
   const { name, pic, ing, price, avalibility } = props;
 
+  return <div className={"pizza " + (avalibility ? "sold-out" : "")}>
 
-
-  if(avalibility) return null;
-  return <div className=''>
-    <div className='pizza'>
-      <img src={`/${pic}`} alt={name} />
+    <img className={`${avalibility ? "sold-out" : ""}`} src={`/${pic}`} alt={name} />
       <div>
       <h3>{name}</h3>
       <p>{ing}</p>
-      <h3>{price + "$"}</h3>
+      <h3>{avalibility ?"soldout" : `${price + "$"}`}</h3>
     </div>
    </div> 
-  </div>
+
 }
 
 
