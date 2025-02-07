@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function App(){
-    const [step, setStep] = useState(1)
+    // const [step, setStep] = useState(1)
     const [count, setCount] = useState(0)
     const [slider, setSlider] = useState(1)
     const date = new Date();
@@ -23,15 +23,20 @@ function App(){
         setCount(e.target.value)
     }
 
-    return <div>
-        <Steps step={step} slider={slider} handleSlider={handleSlider} setSlider={setSlider} />
+    function handleReset(){
+        setCount(0)
+        setSlider(1)
+    }
 
+    return <div>
+        <Steps  slider={slider} handleSlider={handleSlider} setSlider={setSlider} />
         <Counts count={count} handleInputCount={handleInputCount} onDec={handleDec} onInc={handleInc}/>
         <Display count={count} date={date}/>
+        {slider !== 1 || count !== 0 ? <button onClick={handleReset}>Reset</button>: ""}
     </div>
 }
 
-function Steps({ slider, step, onStepInc, onStepDec, handleSlider }){
+function Steps({ slider, handleSlider }){
     return <div>
         <input type="range" value={slider} onChange={(e) => handleSlider(e)}/>
         <span> {slider}</span>
