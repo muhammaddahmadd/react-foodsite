@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function App(){
     const [step, setStep] = useState(1)
     const [count, setCount] = useState(0)
-
+    const [slider, setSlider] = useState(0)
     const date = new Date();
     date.setDate(date.getDate() + count);
 
@@ -21,27 +21,33 @@ function App(){
     function handleDec() {
         setCount(count => count - step)
     }
+    function handleSlider(e) {
+        setSlider(e.target.value)
+    }
 
     return <div>
-        <Steps step={step} onStepInc={handleStepInc} onStepDec={handleStepDec} />
+        <Steps step={step} slider={slider} handleSlider={handleSlider} setSlider={setSlider} onStepInc={handleStepInc} onStepDec={handleStepDec} />
+
         <Counts count={count} onDec={handleDec} onInc={handleInc}/>
         <Display count={count} date={date}/>
     </div>
 }
 
-function Steps({ step, onStepInc, onStepDec }){
+function Steps({ slider,step, onStepInc, onStepDec, handleSlider }){
     return <div>
-        <button onClick={onStepDec}>-</button>
+        <input type="range" value={slider} onChange={(e) => handleSlider(e)}/>
+        <span> {slider}</span>
+        {/* <button onClick={onStepDec}>-</button>
         <span>Step: {step}</span>
-        <button onClick={onStepInc}>+</button>
+        <button onClick={onStepInc}>+</button> */}
     </div>
 }
  
 function Counts({ count, onInc, onDec }) {
     return <div>
-        <button onClick={onDec}>-</button>
+        {/* <button onClick={onDec}>-</button>
         <span>Count: {count}</span>
-        <button onClick={onInc}>+</button>
+        <button onClick={onInc}>+</button> */}
     </div>
 }
 
